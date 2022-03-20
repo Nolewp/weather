@@ -1,7 +1,7 @@
 var curLocation = [0,0];
 
 if (curLocation[0] == 0 && curLocation[1] == 0) {
-    curLocation = [27.785111866557727, 277.32339352369314];
+    curLocation = [27.961097996917612, -82.49310733133689];
     }
 
 var map = L.map('map').setView(curLocation, 13);
@@ -42,30 +42,24 @@ $('#submit').click(function(){
     var lats = String(lat);
     var lon = parseInt($("#Longitude").val());
     var lons = String(lon);
-    console.log(lats, lons)
-    // fetch('https://api.openweathermap.org/data/2.5/weather?lat={'+lats+'}&lon={'+lons+'}&appid={'+key+'}')
-    // fetch('http://api.weatherapi.com/v1/q='+lat+','+lon+'current.json/', 
-    fetch('https://api.openweathermap.org/data/2.5/weather?lat={'+lats+'}&lon={'+lons+'}&appid={'+key+'}', {
-        "method": "GET",
-        "headers": {
-        }
-        })
-      .then(response => {
-        console.log(response);
-      })
+    console.log(lats, lons);
+    // fetch('https://api.openweathermap.org/data/2.5/weather?lat={'+lats+'}&lon={'+lons+'}&appid={'+keyopen+'}')
+    // fetch('http://api.weatherapi.com/v1/current.json?key='+key+'&q='+lon+','+lat)
+    // fetch('https://api.openweathermap.org/data/2.5/weather?lat={'+lats+'}&lon={'+lons+'}&appid={'+key+'}'
+    fetch('https://api.openweathermap.org/data/2.5/weather?lat='+lats+'&lon='+lons+'&appid='+keyopen)
+      .then(response => response.json())
+      .then(data  => console.log(data))
       .catch(err => {
         console.error(err);
+        console.log('no go');
       });
-      
 
 
-
-// var myKey = config.key
-
-
-// var button = document.querySelector('.button')
-// var inputValue = document.querySelector('.inputValue')
-// // var lat = ($("#Latitude").val())
-// // var lon = ($("#Longitude").val())
+map.on('click', function(e){
+  var coord = e.latlng;
+  var lat = coord.lat;
+  var lng = coord.lng;
+  console.log("You clicked the map at latitude: " + lat + " and longitude: " + lng);
+  });
 
     })
