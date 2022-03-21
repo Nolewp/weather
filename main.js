@@ -4,7 +4,8 @@ if (curLocation[0] == 0 && curLocation[1] == 0) {
     curLocation = [27.961097996917612, -82.49310733133689];
     }
 
-var map = L.map('map').setView(curLocation, 13);
+var map = L.map('map').setView(curLocation, 10);
+
 
 var OpenStreetMap_Mapnik = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
@@ -14,7 +15,7 @@ map.attributionControl.setPrefix(false);
 
 var marker = new L.marker(curLocation, {
     draggable: 'true'
-});
+})
 
 marker.on('dragend', function(event) {
     var position = marker.getLatLng();
@@ -37,29 +38,28 @@ $("#Latitude, #Longitude").change(function() {
 map.addLayer(marker);
 
 $('#submit').click(function(){
+    var keyopen = 'c1a4ddae9a9e027abb94a73bc9db6646'
+    var lat = ($("#Latitude").val());
+    var lon = ($("#Longitude").val());
+    console.log(lat, lon);
+    fetch('https://api.openweathermap.org/data/2.5/weather?lat='+lat+'&lon='+lon+'&appid='+keyopen)
+      .then(response => {
+          return response.json();
+      })
+      .then(json => {
+        console.log(json)
+        var name = json["name"]
+        var temp = Number(((json["main"]['temp'] - 273.15) * 1.8) + 32).toFixed(2)
+        // var temp = temps
+        console.log(temp)
+        document.getElementById('name').innerText = name
+        document.getElementById('temp').innerText = temp
+      })
 
-    var lat = parseInt($("#Latitude").val());
-    var lats = String(lat);
-    var lon = parseInt($("#Longitude").val());
-    var lons = String(lon);
-    console.log(lats, lons);
-    // fetch('https://api.openweathermap.org/data/2.5/weather?lat={'+lats+'}&lon={'+lons+'}&appid={'+keyopen+'}')
-    // fetch('http://api.weatherapi.com/v1/current.json?key='+key+'&q='+lon+','+lat)
-    // fetch('https://api.openweathermap.org/data/2.5/weather?lat={'+lats+'}&lon={'+lons+'}&appid={'+key+'}'
-    fetch('https://api.openweathermap.org/data/2.5/weather?lat='+lats+'&lon='+lons+'&appid='+keyopen)
-      .then(response => response.json())
-      .then(data  => console.log(data))
       .catch(err => {
         console.error(err);
-        console.log('no go');
+        console.log('Something went wrong!')
+        alert('Something went wrong, try dragging the  pin to a new location you would like to know the temperature of within longitude -180 and 180 degrees');
       });
-
-
-map.on('click', function(e){
-  var coord = e.latlng;
-  var lat = coord.lat;
-  var lng = coord.lng;
-  console.log("You clicked the map at latitude: " + lat + " and longitude: " + lng);
-  });
 
     })
