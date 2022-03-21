@@ -1,14 +1,20 @@
 body {
     max-height: 100vh;
 }
+.center {
+    text-align: center;
+}
 #map {
+    border-radius: 10px;
     height: 60vh; 
 }
-.input {
+.flex {
     display: flex;
-    
 }
 
+h2 {
+    padding-left: 2vw;
+}
 .fill {
     border-radius: 10px;
     min-width: 12px;
@@ -16,15 +22,31 @@ body {
 }
 .fill1 {
     border-radius: 10px;
-    background-color: aliceblue;
+    background-color: rgb(81, 145, 201);
     min-width: fit-content;
     width: 10vw;
 }
 .card {
     border-radius: 10px;
     max-height: 25vh;
+    display: flex;
 }
 
 #sub {
     padding: 5vw;
+}
+
+
+.float-child-full {
+    width: 80%;
+    float: left;
+    padding-left: 5px;
+}  
+
+#icon {
+    margin-top: 5vh;
+    margin-bottom: 5vh;
+    
+    height: 10%;
+    width: 10%;
 }

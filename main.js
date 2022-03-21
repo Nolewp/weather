@@ -6,12 +6,18 @@ if (curLocation[0] == 0 && curLocation[1] == 0) {
 
 var map = L.map('map').setView(curLocation, 10);
 
+var corner1 = L.latLng(90, -180)
+var corner2 = L.latLng(-90, 180)
+bounds = L.latLngBounds(corner1, corner2);
 
-var OpenStreetMap_Mapnik = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+
+var OpenStreetMap = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
+    minZoom: 2,
+
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-}).addTo(map);
-map.attributionControl.setPrefix(false);
+    }).addTo(map);
+    map.attributionControl.setPrefix(false);
 
 var marker = new L.marker(curLocation, {
     draggable: 'true'
@@ -49,11 +55,17 @@ $('#submit').click(function(){
       .then(json => {
         console.log(json)
         var name = json["name"]
-        var temp = Number(((json["main"]['temp'] - 273.15) * 1.8) + 32).toFixed(2)
+        var temp = String(Number(((json["main"]['temp'] - 273.15) * 1.8) + 32).toFixed(2))
+        var cloud = json["weather"][0]['description']
+        var photoCode = 'http://openweathermap.org/img/wn/' + json["weather"][0]['icon'] + '.png'
         // var temp = temps
-        console.log(temp)
+        console.log(cloud)
         document.getElementById('name').innerText = name
-        document.getElementById('temp').innerText = temp
+        document.getElementById('temp').innerText = temp 
+        document.getElementById('f').innerHTML= '<h3> &#x2109;</h3>'
+        document.getElementById('cloud').innerText = cloud
+        document.getElementById('icon').src = photoCode
+
       })
 
       .catch(err => {

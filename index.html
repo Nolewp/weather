@@ -14,9 +14,9 @@
 
 <body>
     <div class="container">
-        <h2 class="masthead">Whats the weather like here?</h1>
+        <h2 class="center">Whats the weather like here?</h1>
         <div id="map"></div>
-        <div class="input">
+        <div class="flex">
            
                 <input  class =  "fill" id="Latitude" placeholder="Latitude" name="Location.Latitude">
                 <input  class =  "fill" id="Longitude" placeholder="Longitude" name="Location.Longitude">
@@ -26,10 +26,28 @@
                     </div>
         </div>
         <div class="card">
-            <h2>Area</h2>
-            <h2 id="name"></h2>
-            <h1>Temperature:</h1><h1 id="temp"></h1>
-            <h3 class="hydro"> </h3>
+            <div class="float-container">
+                <div class="float-child-full">
+                    <div class="flex">
+                        <h2>Area:</h2>
+                        <h2 id="name"></h2>
+                    </div>
+                    <div class="flex">
+                    <h2>Temperature:</h2>
+                    <h2 id="temp"> </h2>
+                    <h2 id="f"></h2>
+                    <h3 class="hydro"> </h3>
+                    </div>
+                    <div class="flex">
+                        <h2>Weather:</h2>
+                        <h2 id="cloud"></h2> <a></a>
+                    </div>
+                </div>
+                <div class="float-child-small">
+                    <img id="icon" src="" alt="">
+                </div>
+            </div>
+
         </div>
     </div>
 </body>
