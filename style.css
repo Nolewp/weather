@@ -4,10 +4,25 @@ body {
 #map {
     height: 60vh; 
 }
+.input {
+    display: flex;
+    
+}
 
-
-table {
-    text-align: center;
+.fill {
+    border-radius: 10px;
+    min-width: 12px;
+    width: 35vw;
+}
+.fill1 {
+    border-radius: 10px;
+    background-color: aliceblue;
+    min-width: fit-content;
+    width: 10vw;
+}
+.card {
+    border-radius: 10px;
+    max-height: 25vh;
 }
 
 #sub {
