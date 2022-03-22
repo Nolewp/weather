@@ -6,7 +6,7 @@ body {
 }
 #map {
     border-radius: 10px;
-    height: 60vh; 
+    height: 55vh; 
 }
 .flex {
     display: flex;
@@ -23,6 +23,7 @@ h2 {
 .fill1 {
     border-radius: 10px;
     background-color: rgb(136, 185, 228);
+    min-height: auto;
     min-width: fit-content;
     width: 10vw;
 }
@@ -32,9 +33,6 @@ h2 {
     display: flex;
 }
 
-#sub {
-    padding: 5vw;
-}
 
 
 .float-child-full {
