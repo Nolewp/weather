@@ -58,14 +58,14 @@ $('#submit').click(function(){
         var temp = String(Number(((json["main"]['temp'] - 273.15) * 1.8) + 32).toFixed(2))
         var cloud = json["weather"][0]['description']
         var photoCode = 'http://openweathermap.org/img/wn/' + json["weather"][0]['icon'] + '.png'
-        // var temp = temps
-        console.log(cloud)
+        
+        
         document.getElementById('name').innerText = name
         document.getElementById('temp').innerText = temp 
         document.getElementById('f').innerHTML= '<h3> &#x2109;</h3>'
         document.getElementById('cloud').innerText = cloud
         document.getElementById('icon').src = photoCode
-
+        document.getElementById('icon').style = "border-radius: 5px; background-color: rgb(187, 178, 178);"
       })
 
       .catch(err => {

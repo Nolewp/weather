@@ -46,7 +46,6 @@ h2 {
 #icon {
     margin-top: 5vh;
     margin-bottom: 5vh;
-    
-    height: 10%;
-    width: 10%;
+    min-width: 5px;
+    min-height: 5px;
 }
