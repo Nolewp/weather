@@ -28,12 +28,12 @@ marker.on('dragend', function(event) {
     marker.setLatLng(position, {
     draggable: 'true'
     }).bindPopup(position).update();
-    $("#Latitude").val(position.lat);
-    $("#Longitude").val(position.lng).keyup();
+    document.querySelector('#Latitude').value = position.lat
+    document.querySelector('#Longitude').value = position.lng
 });
 
 $("#Latitude, #Longitude").change(function() {
-    var position = [parseInt($("#Latitude").val()), parseInt($("#Longitude").val())];
+    var position = [parseInt(document.querySelector('#Latitude').value), parseInt(document.querySelector('#Longitude').value)];
     marker.setLatLng(position, {
     draggable: 'true'
     }).bindPopup(position).update();
@@ -43,17 +43,15 @@ $("#Latitude, #Longitude").change(function() {
 
 map.addLayer(marker);
 
-$('#submit').click(function(){
+document.querySelector('#submit').addEventListener("click", (e) => {
     var keyopen = 'c1a4ddae9a9e027abb94a73bc9db6646'
-    var lat = ($("#Latitude").val());
-    var lon = ($("#Longitude").val());
-    console.log(lat, lon);
+    var lat = document.querySelector('#Latitude').value
+    var lon = document.querySelector('#Longitude').value
     fetch('https://api.openweathermap.org/data/2.5/weather?lat='+lat+'&lon='+lon+'&appid='+keyopen)
       .then(response => {
           return response.json();
       })
       .then(json => {
-        console.log(json)
         var name = json["name"]
         var temp = String(Number(((json["main"]['temp'] - 273.15) * 1.8) + 32).toFixed(2))
         var cloud = json["weather"][0]['description']
@@ -61,8 +59,7 @@ $('#submit').click(function(){
         
         
         document.getElementById('name').innerText = name
-        document.getElementById('temp').innerText = temp 
-        document.getElementById('f').innerHTML= '<h3> &#x2109;</h3>'
+        document.getElementById('temp').innerText = temp + '\u00B0 F'
         document.getElementById('cloud').innerText = cloud
         document.getElementById('icon').src = photoCode
         document.getElementById('icon').style = "border-radius: 5px; background-color: rgb(187, 178, 178);"
