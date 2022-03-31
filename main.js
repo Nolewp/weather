@@ -31,8 +31,7 @@ marker.on('dragend', function(event) {
     document.querySelector('#Latitude').value = position.lat
     document.querySelector('#Longitude').value = position.lng
 });
-
-$("#Latitude, #Longitude").change(function() {
+document.querySelector('#Latitude','#Longitude' ).addEventListener("change", (e) => {
     var position = [parseInt(document.querySelector('#Latitude').value), parseInt(document.querySelector('#Longitude').value)];
     marker.setLatLng(position, {
     draggable: 'true'
