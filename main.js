@@ -11,6 +11,8 @@ var corner2 = L.latLng(-90, 180)
 bounds = L.latLngBounds(corner1, corner2);
 
 
+//cerate map
+
 var OpenStreetMap = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
     minZoom: 2,
@@ -23,6 +25,8 @@ var marker = new L.marker(curLocation, {
     draggable: 'true'
 })
 
+
+//gathers lat lng populates weather form 
 function populateForm(){
     var position = marker.getLatLng();
     marker.setLatLng(position, {
@@ -33,9 +37,11 @@ function populateForm(){
 }
 
 
-marker.on('dragend', function(event) {
-    populateForm()
-});
+function submitForm() { 
+    document.getElementById('submit').click();
+}
+
+marker.on('dragend', populateForm);
 
 document.querySelector('#Latitude','#Longitude' ).addEventListener("change", (e) => {
     var position = [parseInt(document.querySelector('#Latitude').value), parseInt(document.querySelector('#Longitude').value)];
@@ -47,13 +53,9 @@ document.querySelector('#Latitude','#Longitude' ).addEventListener("change", (e)
 
 function onLocationFound(e) {
     marker.setLatLng(e.latlng);
-    populateForm()  
+    populateForm();
+    submitForm();
 }
-
-map.on('locationfound', onLocationFound);
-map.addLayer(marker);
-
-map.locate({setView: true, maxZoom: 16});
 
 document.querySelector('#submit').addEventListener("click", (e) => {
     var keyopen = 'c1a4ddae9a9e027abb94a73bc9db6646'
@@ -84,3 +86,8 @@ document.querySelector('#submit').addEventListener("click", (e) => {
       });
 
     })
+
+
+map.on('locationfound', onLocationFound);
+map.addLayer(marker);
+map.locate({setView: true, maxZoom: 16});
