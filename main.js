@@ -23,14 +23,20 @@ var marker = new L.marker(curLocation, {
     draggable: 'true'
 })
 
-marker.on('dragend', function(event) {
+function populateForm(){
     var position = marker.getLatLng();
     marker.setLatLng(position, {
     draggable: 'true'
     }).bindPopup(position).update();
     document.querySelector('#Latitude').value = position.lat
     document.querySelector('#Longitude').value = position.lng
+}
+
+
+marker.on('dragend', function(event) {
+    populateForm()
 });
+
 document.querySelector('#Latitude','#Longitude' ).addEventListener("change", (e) => {
     var position = [parseInt(document.querySelector('#Latitude').value), parseInt(document.querySelector('#Longitude').value)];
     marker.setLatLng(position, {
@@ -39,8 +45,15 @@ document.querySelector('#Latitude','#Longitude' ).addEventListener("change", (e)
     map.panTo(position);
 });
 
+function onLocationFound(e) {
+    marker.setLatLng(e.latlng);
+    populateForm()  
+}
 
+map.on('locationfound', onLocationFound);
 map.addLayer(marker);
+
+map.locate({setView: true, maxZoom: 16});
 
 document.querySelector('#submit').addEventListener("click", (e) => {
     var keyopen = 'c1a4ddae9a9e027abb94a73bc9db6646'
