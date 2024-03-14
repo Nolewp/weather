@@ -62,6 +62,10 @@ function onLocationFound(e) {
     }
 }
 
+function onLocationError(e) {
+    marker = new L.marker(curLocation, {
+        draggable: 'true'
+    })
 }
 
 
