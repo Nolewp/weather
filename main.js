@@ -81,7 +81,7 @@ document.querySelector('#submit').addEventListener("click", (e) => {
         var name = json["name"]
         var temp = String(Number(((json["main"]['temp'] - 273.15) * 1.8) + 32).toFixed(2))
         var cloud = json["weather"][0]['description']
-        var photoCode = 'http://openweathermap.org/img/wn/' + json["weather"][0]['icon'] + '.png'
+        var photoCode = 'https://openweathermap.org/img/wn/' + json["weather"][0]['icon'] + '.png'
         
         
         document.getElementById('name').innerText = name
