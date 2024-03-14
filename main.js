@@ -36,7 +36,15 @@ function populateForm(){
     }).bindPopup(position).update();
     document.querySelector('#Latitude').value = position.lat
     document.querySelector('#Longitude').value = position.lng
+
+    checkMarkerinFram(position);
 }
+
+function checkMarkerinFram(position){
+    if (!map.getBounds().contains(position)){
+        map.setView(position)
+    }
+};
 
 
 function submitForm() { 
