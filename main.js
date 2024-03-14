@@ -6,6 +6,7 @@ if (curLocation[0] == 0 && curLocation[1] == 0) {
 
 var map = L.map('map').setView(curLocation, 10);
 
+
 var corner1 = L.latLng(90, -180)
 var corner2 = L.latLng(-90, 180)
 bounds = L.latLngBounds(corner1, corner2);
@@ -25,10 +26,11 @@ var marker = new L.marker(curLocation, {
     draggable: 'true'
 })
 
-
 //gathers lat lng populates weather form 
 function populateForm(){
+    console.log('populating weather form')
     var position = marker.getLatLng();
+    console.log(position)
     marker.setLatLng(position, {
     draggable: 'true'
     }).bindPopup(position).update();
@@ -63,9 +65,7 @@ function onLocationFound(e) {
 }
 
 function onLocationError(e) {
-    marker = new L.marker(curLocation, {
-        draggable: 'true'
-    })
+    console.log("Cant locate or out of tollerance");
 }
 
 
@@ -99,6 +99,7 @@ document.querySelector('#submit').addEventListener("click", (e) => {
 
     })
 
+    
 map.addLayer(marker);
 map.locate({setView: true, maxZoom: 16});
 map.on('locationerror', onLocationError);
