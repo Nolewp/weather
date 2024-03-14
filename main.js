@@ -41,7 +41,7 @@ function submitForm() {
     document.getElementById('submit').click();
 }
 
-marker.on('dragend', populateForm);
+
 
 document.querySelector('#Latitude','#Longitude' ).addEventListener("change", (e) => {
     var position = [parseInt(document.querySelector('#Latitude').value), parseInt(document.querySelector('#Longitude').value)];
@@ -52,10 +52,18 @@ document.querySelector('#Latitude','#Longitude' ).addEventListener("change", (e)
 });
 
 function onLocationFound(e) {
-    marker.setLatLng(e.latlng);
-    populateForm();
-    submitForm();
+    if (e.accuracy > 100){
+        onLocationError(e);
+    }
+    else {
+        marker.setLatLng(e.latlng);
+        populateForm();
+        submitForm();
+    }
 }
+
+}
+
 
 document.querySelector('#submit').addEventListener("click", (e) => {
     var keyopen = 'c1a4ddae9a9e027abb94a73bc9db6646'
@@ -87,7 +95,8 @@ document.querySelector('#submit').addEventListener("click", (e) => {
 
     })
 
-
-map.on('locationfound', onLocationFound);
 map.addLayer(marker);
 map.locate({setView: true, maxZoom: 16});
+map.on('locationerror', onLocationError);
+marker.on('dragend', populateForm);
+map.on('locationfound', onLocationFound);
