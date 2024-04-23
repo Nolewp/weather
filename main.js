@@ -37,10 +37,10 @@ function populateForm(){
     document.querySelector('#Latitude').value = position.lat
     document.querySelector('#Longitude').value = position.lng
 
-    checkMarkerinFram(position);
+    checkMarkerinFrame(position);
 }
 
-function checkMarkerinFram(position){
+function checkMarkerinFrame(position){
     if (!map.getBounds().contains(position)){
         map.setView(position)
     }
@@ -94,7 +94,7 @@ document.querySelector('#submit').addEventListener("click", (e) => {
         
         document.getElementById('name').innerText = name
         document.getElementById('temp').innerText = temp + '\u00B0 F'
-        document.getElementById('cloud').innerText = cloud
+        document.getElementById('cloud').innerText = (' ' + cloud)
         document.getElementById('icon').src = photoCode
         document.getElementById('icon').style = "border-radius: 5px; background-color: rgb(187, 178, 178);"
       })

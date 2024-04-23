@@ -1,13 +1,23 @@
-body {
+
+
+#map {
+    border-radius: 10px;
+    height: 55vh; 
+}
+
+#icon {
+    margin-top: 5vh;
+    margin-bottom: 5vh;
+    min-width: 5px;
+    min-height: 5px;
+}
+/* body {
     max-height: 100vh;
 }
 .center {
     text-align: center;
 }
-#map {
-    border-radius: 10px;
-    height: 55vh; 
-}
+
 .flex {
     display: flex;
 }
@@ -41,9 +51,4 @@ h2 {
     padding-left: 5px;
 }  
 
-#icon {
-    margin-top: 5vh;
-    margin-bottom: 5vh;
-    min-width: 5px;
-    min-height: 5px;
-}
+ */
